@@ -62,6 +62,9 @@
     {% if product.variants[forloop.index0].image != blank and option.name== 'size'  %}
       <label class="swing" for="{{ section.id }}-{{ option.position}}-{{ forloop.index0 }}
       {% else %}
+        {% if product.variants[forloop.index0].image != blank and option.name== 'color'  %}
+           <label class="swimg" for="{{ section.id }}-{{ option.position}}-{{ forloop.index0 }}
+          {% endif %}
     <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
       {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>

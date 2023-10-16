@@ -138,6 +138,26 @@
           </div>
         </div>
       </div>
+const variantSelect = document.getElementById('variant-select');
+const addToCartButton = document.getElementById('add-to-cart');
+
+// Function to add Eye Liner to cart
+function addEyeLinerToCart() {
+  // Check if the selected variant matches "Pink" and "100ml"
+  const selectedVariantId = variantSelect.value;
+  const selectedVariant = product.variants.find((variant) => variant.id == selectedVariantId);
+  
+  if (selectedVariant && selectedVariant.title === 'Pink' && selectedVariant.option1 === '100ml') {
+    // Use Shopify's AJAX API to add Eye Liner to cart
+    jQuery.post('/cart/add.js', { items: [{ id: 'eye-liner-product-id', quantity: 1 }] });
+
+    // Add $0.01 to the cart
+    jQuery.post('/cart/update.js', { updates: { 'eye-liner-product-id': 0.01 } });
+  }
+}
+
+addToCartButton.addEventListener('click', addEyeLinerToCart);
+
       <div class="card__content">
         <div class="card__information">
           <h3

@@ -94,25 +94,7 @@
             {% endif %}
             value="{{ variant.id }}"
           >
-            // Function to remove Eye Liner from cart
-function removeEyeLinerFromCart() {
-  const cart = JSON.parse(jQuery.ajax({ url: '/cart.js', async: false }).responseText);
-
-  // Check if the cart contains "Revolution Lip Oil (Pink, 100ml)"
-  const lipOilVariantId = 'your-lip-oil-variant-id';
-  const eyeLinerProductId = 'eye-liner-product-id';
-
-  const lipOilItem = cart.items.find((item) => item.variant_id === lipOilVariantId);
-
-  if (!lipOilItem) {
-    // If "Revolution Lip Oil (Pink, 100ml)" is not in the cart, remove Eye Liner
-    jQuery.post('/cart/change.js', { updates: { [eyeLinerProductId]: 0 } });
-  }
-}
-
-// Listen for changes in the cart
-jQuery('body').on('ajaxCart.afterCartLoad', removeEyeLinerFromCart);
-
+           
             {%- liquid
               echo variant.title
               echo variant.price | money | strip_html | prepend: ' - '
